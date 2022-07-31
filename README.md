@@ -27,7 +27,7 @@ public class Foo : MonoBehaviour
         Debug.Log(list.Random());
         // Output: either 1, 2 or 3
         
-        foreach(int i in list)
+        foreach(int i in list.RandomOnce())
             Debug.Log(i);
         // Output: 1, 2 and 3 in random order
         
