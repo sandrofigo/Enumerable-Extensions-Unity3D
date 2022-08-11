@@ -11,14 +11,10 @@ namespace EnumerableExtensions
         /// </summary>
         public static IEnumerable<T> RandomOnce<T>(this IEnumerable<T> enumerable)
         {
-            var list = enumerable.ToList();
-
-            while (list.Count != 0)
-            {
-                int index = UnityEngine.Random.Range(0, list.Count);
-                yield return list[index];
-                list.RemoveAt(index);
-            }
+            var array = enumerable as T[] ?? enumerable.ToArray();
+            
+            foreach (int i in Enumerable.Range(0, array.Length).OrderBy(_ => UnityEngine.Random.value))
+                yield return array[i];
         }
 
         /// <summary>
@@ -26,18 +22,10 @@ namespace EnumerableExtensions
         /// </summary>
         public static IEnumerable<T> RandomOnce<T>(this IEnumerable<T> enumerable, int count)
         {
-            var list = enumerable.ToList();
-
-            if (count > list.Count)
-                throw new ArgumentOutOfRangeException(nameof(count), "The provided count is larger than the total number of items.");
-
-            while (count > 0)
-            {
-                int index = UnityEngine.Random.Range(0, list.Count);
-                yield return list[index];
-                list.RemoveAt(index);
-                count--;
-            }
+            var array = enumerable as T[] ?? enumerable.ToArray();
+            
+            foreach (int i in Enumerable.Range(0, array.Length).OrderBy(_ => UnityEngine.Random.value).Take(count))
+                yield return array[i];
         }
 
         /// <summary>
