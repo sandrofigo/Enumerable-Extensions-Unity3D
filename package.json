@@ -4,7 +4,7 @@
   "displayName": "Enumerable Extensions",
   "license": "Unlicense",
   "name": "com.sandrofigo.enumerable-extensions-unity3d",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "dependencies": {
   }
 }
